@@ -89,7 +89,7 @@ def connect_to_server(server_name):
 
     # Buscar direccion ip
     # Aqui deberian obtener la direccion ip del servidor y asignarla
-    ip_address = socket.gethostbyname(server_name)
+    ip_address = socket.gethostbyname(server_name.encode("idna"))
 
     # a ip_address
     print(f"Contactando al servidor en {ip_address}...")

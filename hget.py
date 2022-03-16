@@ -89,7 +89,7 @@ def connect_to_server(server_name):
 
     # Buscar direccion ip
     # Aqui deberian obtener la direccion ip del servidor y asignarla
-    ip_address = socket.gethostbyname(server_name)
+    ip_address = socket.gethostbyname(server_name.encode("idna"))
 
     # a ip_address
     print(f"Contactando al servidor en {ip_address}...")
@@ -127,13 +127,13 @@ def read_line(connection):
     # Leer de a un byte
     try:
         data = connection.recv(1)
-    except:
+    except Exception:
         error = True
     while not error and data != b'' and data != b'\n':
         result = result + data
         try:
             data = connection.recv(1)
-        except:
+        except Exception:
             error = True
     if error:
         raise Exception("Error leyendo de la conexion!")
@@ -229,10 +229,11 @@ def download(url, filename):
         if not result:
             sys.stderr.write("No se pudieron descargar los datos\n")
     except Exception as e:
-        sys.stderr.write("Error al comunicarse con el servidor\n")
+        sys.stderr.write(f"Error al comunicarse con el servidor: {e}\n")
         # Descomentar la siguiente línea para debugging:
         raise
         sys.exit(1)
+
 
 def main():
     """Procesa los argumentos, y llama a download()"""

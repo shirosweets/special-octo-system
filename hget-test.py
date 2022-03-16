@@ -88,6 +88,11 @@ class HgetTest(unittest.TestCase):
         except OSError:
             pass
 
+    def test_unicode_url(self):
+        socket_connection = hget.connect_to_server("www.ñandú.cl")
+        self.assertEqual("200.1.123.10", socket_connection.getpeername()[0])
+        socket_connection.close()
+
 
 if __name__ == "__main__":
     unittest.main()

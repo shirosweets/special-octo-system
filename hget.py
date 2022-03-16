@@ -88,15 +88,18 @@ def connect_to_server(server_name):
     """
 
     # Buscar direccion ip
-    # COMPLETAR ABAJO DE ESTA LINEA
     # Aqui deberian obtener la direccion ip del servidor y asignarla
+    ip_address = socket.gethostbyname(server_name)
+
     # a ip_address
-    # DEJAR LA LINEA SIGUIENTE TAL COMO ESTA
-    sys.stderr.write("Contactando al servidor en %s...\n" % ip_address)
+    print(f"Contactando al servidor en {ip_address}...")
+
     # Crear socket
-    # COMPLETAR ABAJO DE ESTA LINEA
+    socket_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
     # Aqui deben conectarse al puerto correcto del servidor
-    # NO MODIFICAR POR FUERA DE ESTA FUNCION
+    socket_server.connect((ip_address, HTTP_PORT))
+    return socket_server
 
 
 def send_request(connection, url):
@@ -228,9 +231,8 @@ def download(url, filename):
     except Exception as e:
         sys.stderr.write("Error al comunicarse con el servidor\n")
         # Descomentar la siguiente línea para debugging:
-        # raise
+        raise
         sys.exit(1)
-
 
 def main():
     """Procesa los argumentos, y llama a download()"""

@@ -88,7 +88,7 @@ Se implementó la función `connect_to_server` siguiendo las sugerencias de la d
 
 ## Punto estrella
 
-Se investigó sobre el **encoding de urls con caracteres de Unicode**. El estándar de http en el momento que se realizó solo contemplaba caracteres ASCII, entonces una vez que la web creció aquellos que necesitaban usar caracteres especiales, por ejemplo paises asiáticos, estaban limitados. La solución fue un nuevo estandar ([RFC 3492](https://datatracker.ietf.org/doc/html/rfc3492)) que definía cómo se podían encodear estos caracteres dentro de las limitaciones de ASCII. Este encodeo de urls se llama [**punycode**](https://es.wikipedia.org/wiki/Punycode)
+Se investigó sobre el **encoding de urls con caracteres de Unicode**. El estándar de http en el momento que se realizó solo contemplaba caracteres ASCII, entonces una vez que la web creció aquellos que necesitaban usar caracteres especiales, por ejemplo países asiáticos, estaban limitados. La solución fue un nuevo estándar ([RFC 3492](https://datatracker.ietf.org/doc/html/rfc3492)) que definía cómo se podían encodear estos caracteres dentro de las limitaciones de ASCII. Este encodeo de urls se llama [**punycode**](https://es.wikipedia.org/wiki/Punycode)
 
 La implementación de strings de *Python* ya tiene un sistema para encodeo de `punycode`, por lo que la implemenación del laboratorio simplemente constó de encodearlo como **`"idna"`**
 
